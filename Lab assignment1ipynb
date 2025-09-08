@@ -1,0 +1,302 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPWDPmnmYW5zPMqRoJxjdNI",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Vyshnavi2k5/PDS_B14_2303A51968/blob/main/Lab%20assignment1ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "K0MK5-2lZSSr",
+        "outputId": "44c79022-80c9-4c8e-e92d-5f14d07e219d"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "--- Recursive Factorial Trace ---\n",
+            "factorial( 5 ) =  5  * factorial( 4 )\n",
+            "factorial( 4 ) =  4  * factorial( 3 )\n",
+            "factorial( 3 ) =  3  * factorial( 2 )\n",
+            "factorial( 2 ) =  2  * factorial( 1 )\n",
+            "factorial( 1 ) = 1 (base case)\n",
+            "Answer: 120\n"
+          ]
+        }
+      ],
+      "source": [
+        "def factorial_recursive(n):\n",
+        "    # check if n is negative\n",
+        "    if n < 0:\n",
+        "        print(\"Factorial not possible for negative numbers\")\n",
+        "        return None\n",
+        "    if n == 0 or n == 1:\n",
+        "        print(\"factorial(\", n, \") = 1 (base case)\")\n",
+        "        return 1\n",
+        "    else:\n",
+        "        print(\"factorial(\", n, \") = \", n, \" * factorial(\", n-1, \")\")\n",
+        "        return n * factorial_recursive(n-1)\n",
+        "num = 5\n",
+        "print(\"\\n--- Recursive Factorial Trace ---\")\n",
+        "print(\"Answer:\", factorial_recursive(num))"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def factorial_tail(n, acc=1):\n",
+        "    if n < 0:\n",
+        "        return None\n",
+        "    if n == 0 or n == 1:\n",
+        "        return acc\n",
+        "    return factorial_tail(n-1, n*acc)\n",
+        "num = 5\n",
+        "print(\"\\n--- Tail Recursive Factorial ---\")\n",
+        "print(\"Answer:\", factorial_tail(num))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PDvgU31aaohC",
+        "outputId": "ea82f8a9-e217-4ba9-9a57-a926e4c6a175"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "--- Tail Recursive Factorial ---\n",
+            "Answer: 120\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def factorial_iterative(n):\n",
+        "    if n < 0:\n",
+        "        return None\n",
+        "    fact = 1\n",
+        "    for i in range(2, n+1):\n",
+        "        fact *= i\n",
+        "    return fact\n",
+        "num = 5\n",
+        "print(\"\\n--- Iterative Factorial ---\")\n",
+        "print(\"Answer:\", factorial_iterative(num))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "CnRn4_mYasRV",
+        "outputId": "cc36751b-46d6-43e7-9b5a-09a2cfeec124"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "--- Iterative Factorial ---\n",
+            "Answer: 120\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "num = 5\n",
+        "print(\"\\nComparison Table:\")\n",
+        "print(\"Recursive:\", factorial_recursive(num))\n",
+        "print(\"Tail Recursion:\", factorial_tail(num))\n",
+        "print(\"Iterative:\", factorial_iterative(num))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BmHZfVyiawcN",
+        "outputId": "08836329-de2f-41d6-b3c0-790bb133e8bd"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "Comparison Table:\n",
+            "factorial( 5 ) =  5  * factorial( 4 )\n",
+            "factorial( 4 ) =  4  * factorial( 3 )\n",
+            "factorial( 3 ) =  3  * factorial( 2 )\n",
+            "factorial( 2 ) =  2  * factorial( 1 )\n",
+            "factorial( 1 ) = 1 (base case)\n",
+            "Recursive: 120\n",
+            "Tail Recursion: 120\n",
+            "Iterative: 120\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def factorial_recursive(n):\n",
+        "    if n < 0:\n",
+        "        print(\"Factorial not possible for negative numbers\")\n",
+        "        return None\n",
+        "\n",
+        "    if n == 0 or n == 1:   # base case\n",
+        "        print(\"factorial(\", n, \") = 1\")\n",
+        "        return 1\n",
+        "\n",
+        "    # recursive case\n",
+        "    print(\"factorial(\", n, \") = \", n, \"* factorial(\", n-1, \")\")\n",
+        "    return n * factorial_recursive(n-1)"
+      ],
+      "metadata": {
+        "id": "N_61d2J4a0uP"
+      },
+      "execution_count": 5,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def nCr(n, r):\n",
+        "    # validate input\n",
+        "    if n < 0 or r < 0 or n < r:\n",
+        "        print(\"Invalid values! make sure n ≥ r ≥ 0\")\n",
+        "        return None\n",
+        "\n",
+        "    # edge cases\n",
+        "    if r == 0 or n == r:\n",
+        "        print(\"Since r=0 or n=r, nCr = 1 directly\")\n",
+        "        return 1\n",
+        "\n",
+        "    # compute using formula nCr = n! / (r! * (n-r)!)\n",
+        "    print(\"\\n--- Calculating n! ---\")\n",
+        "    fact_n = factorial_recursive(n)\n",
+        "    print(\"\\n--- Calculating r! ---\")\n",
+        "    fact_r = factorial_recursive(r)\n",
+        "    print(\"\\n--- Calculating (n-r)! ---\")\n",
+        "    fact_n_r = factorial_recursive(n-r)\n",
+        "\n",
+        "    result = fact_n // (fact_r * fact_n_r)\n",
+        "    return result"
+      ],
+      "metadata": {
+        "id": "4yD7lS8ga52_"
+      },
+      "execution_count": 8,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "n = 5\n",
+        "r = 2\n",
+        "print(\"\\n--- nCr Calculation ---\")\n",
+        "print(\"C(\", n, \",\", r, \") =\", nCr(n, r))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XpQfqyQJbFsN",
+        "outputId": "82ebd1b4-88f2-492b-86c5-6e2a40d6294d"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "--- nCr Calculation ---\n",
+            "\n",
+            "--- Calculating n! ---\n",
+            "factorial( 5 ) =  5 * factorial( 4 )\n",
+            "factorial( 4 ) =  4 * factorial( 3 )\n",
+            "factorial( 3 ) =  3 * factorial( 2 )\n",
+            "factorial( 2 ) =  2 * factorial( 1 )\n",
+            "factorial( 1 ) = 1\n",
+            "\n",
+            "--- Calculating r! ---\n",
+            "factorial( 2 ) =  2 * factorial( 1 )\n",
+            "factorial( 1 ) = 1\n",
+            "\n",
+            "--- Calculating (n-r)! ---\n",
+            "factorial( 3 ) =  3 * factorial( 2 )\n",
+            "factorial( 2 ) =  2 * factorial( 1 )\n",
+            "factorial( 1 ) = 1\n",
+            "C( 5 , 2 ) = 10\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import math\n",
+        "n = 5\n",
+        "r = 2\n",
+        "print(\"\\n--- Comparison with math.comb ---\")\n",
+        "print(\"math.comb(\", n, \",\", r, \") =\", math.comb(n, r))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qTNBWcxGbOKk",
+        "outputId": "64861b6c-55de-425c-8bef-562dec57824d"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "--- Comparison with math.comb ---\n",
+            "math.comb( 5 , 2 ) = 10\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
